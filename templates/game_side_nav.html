@@ -1,0 +1,67 @@
+<ul id="slide-out" class="side-nav fixed grey lighten-4">
+  <li><div class="user-view">
+      <span class="teal-text name">{{username}}</span>
+      <span class="teal-text name"><span class="black-text light">In room : </span>{{name}}</span>
+  </div></li>
+  <li><div class="divider"></div></li>
+  <li class="center"><h4 class="header"><span id="blue_score" class="card-blue-text">{{blue_score}}</span> - <span id="red_score" class="card-red-text">{{red_score}}</span> </h4>
+    <h5 class="header light"> <span id="team-turn-side">{{to_play|team_value}}</span> <span id="team-side-content">{% if spy_turn %}  spy to hint {% else %} team to play  {% endif %}</span><h5>
+	<h6 class="header light" id="hint-word-side"> Hint : <b>{{hint_word}}</b></h6><h6 class="header light" id="guesses-side">Remaining guesses : <b>{{guesses}}</b></h6></li>
+  
+  <li><div class="divider"></div></li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a><i class="material-icons card-blue-text">group</i>Blue team</a>
+        <div>
+          <ul id="blue_team">
+	    {% for p in players %}
+	    {% if p.team == "blue" %}
+	    <li{% if p.game_master %} class="card-blue lighten-5"{% endif %}> <a class="card-blue-text name" id="player-{{p.username}}">{{p.username}} </a></li> 
+	    {% endif %}
+	    {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a><i class="material-icons card-red-text">group</i>Red team</a>
+        <div>
+          <ul id="red_team">
+	    {% for p in players %}
+	    {% if p.team == "red" %}
+	    <li {% if p.game_master %} class="card-red lighten-5"{% endif %}> <a class="card-red-text name" id="player-{{p.username}}">{{p.username}} </a></li> 
+	    {% endif %}
+	    {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+
+  <li class="center">
+    <a href="leave/{{name}}" id="leave-button" class="quit-button waves-effect waves-light btn card-blue"><i class="material-icons white-text right">exit_to_app</i>Leave game</a>
+  </li>
+  {% if owner %}
+  <li class="center">
+    <a  class="quit-button waves-effect waves-light btn card-red modal-trigger" href="#confirm_delete"><i class="material-icons white-text right">delete_forever</i>Delete game</a>
+  </li>
+  {% endif %}
+</ul>
+
+<div id="confirm_delete" class="modal">
+  <div class="modal-content">
+    <h4>Please Confirm</h4>
+    <p>This will delete the room</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
+    <a href="delete/{{name}}" class="waves-effect waves-green btn-flat" id="md1_Yes">Yes</a>
+  </div>
+</div>
+
+<a href="#" data-activates="slide-out" class="button-collapse hide"><i class="material-icons">menu</i></a>

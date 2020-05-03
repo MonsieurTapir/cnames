@@ -1,0 +1,80 @@
+{% extends "backbone.html" %}
+{% block titre %} Codenames Online {% endblock %}
+{% block corps %}
+<div class="parallax-container valign-wrapper">
+  <div class="container center">
+    <div class="row center">
+      <h5 class="header light">An online version of the famous boardgame</h5>
+      {% if guest %}
+      <div class="row">
+	</div>
+    <div class="row">
+      <p class="light center">Start by creating your account or logging into an existing one.</p> 
+    </div>
+    <div class="row center">
+      <a href="signup"  class="btn-large waves-effect waves-light card-blue">Sign up</a>
+      <a href="login" class="btn-large waves-effect waves-light card-red">Login</a>
+    </div>
+    {% endif %}
+    {% if not guest and playing %}
+          <p class="center light">It seems like you are already in the room named <span class="card-red-text">{{room_name}}</span></p>
+      <div class="center">
+        <a class="btn waves-effect waves-light truncate card-blue" href="{{room_name}}"><i class="material-icons left">arrow_upward</i>Go to {{room_name}}</a>
+	<a class="btn waves-effect waves-light truncate card-blue" href="leave/{{room_name}}"><i class="material-icons right">exit_to_app</i>Leave {{room_name}}</a>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+  <div class="parallax"><img src="static/pattern.png"></div>
+</div>
+{% if not guest and not playing%}
+<div class="section  z-depth-2 white">
+  <div class="container">
+    <div class="row">
+      {% include "creation_form.html" %}
+      {% include "join_form.html" %}
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="parallax-container valign-wrapper">
+  <div class="parallax"><img src="static/pattern2.png"></div>
+</div>
+<footer class="page-footer card-blue">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l4">
+	<h5 class="white-text">Tapirs</h5>
+	<p> The tapir is a marvelous animal. The more you learn about it, the more you enjoy it. </p>
+	<a href="https://en.wikipedia.org/wiki/Tapir" class="btn waves-effect waves-light card-blue darken-1">Learn more</a>
+      </div>
+      <div class="col s12 l4">
+	<h5 class="white-text">Codenames</h5>
+	<p> Codenames is a boardgame designed by Vlaada Chvàtil. Easy to understand, fun to play, Codenames is a must-have at geeky parties. </p>
+	<a href="https://boardgamegeek.com/boardgame/178900/codenames" class="btn waves-effect waves-light card-blue darken-1">Buy it </a>
+      </div>
+      <div class="col s12 l4">
+	<h5 class="white-text">About this site</h5>
+	<p> This is a free, enjoyable online version of Codenames. Back-end developped using Flask Python framework. Front-end developped using Materialize CSS framework. </p>
+	<a href="http://materializecss.com/" class="btn waves-effect waves-light card-blue darken-1">Materialize </a>
+	<a href="http://flask.pocoo.org/" class="btn waves-effect waves-light card-blue darken-1">Flask </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Full-stack by MrTapir
+    </div>
+  </div>
+</footer>
+{% endblock %}
+{% block footer %}
+<script>
+  $(document).ready(function(){
+  $('.parallax').parallax();
+  });
+  {% if jump %}
+  $(function(){ window.location.hash = "{{jump}}"; });
+  {% endif %}
+</script>
+{% endblock %}

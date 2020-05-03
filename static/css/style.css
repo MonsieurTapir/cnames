@@ -1,0 +1,136 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #fafafa!important;
+}
+
+.mycard{
+    height:100px;
+}
+.s5ths,
+.m5ths,
+.l5ths,
+.xl5ths {
+    margin-left: auto;
+    left: auto;
+    right: auto;
+}
+
+.row .col.s5ths {
+    width: 20%;
+}
+
+@media only screen and (min-width: 601px) {
+    .row .col.m5ths {
+	width: 20%;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .row .col.l5ths {
+	width: 20%;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    .row .col.xl5ths {
+	width: 20%;
+    }
+}
+
+
+p.uppercase {
+    text-transform: uppercase;
+}
+
+.marginplusplus{
+    margin-bottom:10px;
+    margin-top:30px;
+}
+@media screen and (min-width: 993px){
+    .container-responsif {
+	padding-left:200px;
+	min-height:100vh;
+    }
+    .modal{width: 25%!important}
+
+}
+@media screen and (min-width: 400px){
+    .form-container{
+	max-width:500px;
+    }
+}
+.quit-button{
+    margin:10px 50px!important;
+}
+.quit-button i{
+    margin-right:0!important;
+}
+.form-container{
+    display: inline-block;
+    padding: 32px 32px 0px 32px;
+    border: 1px solid #ddd;
+    width:100%;
+}
+
+.guessed{
+         outline: 5px solid white;
+        outline-offset: -20px;
+}
+.gameboard{
+    min-height:100vh;
+}
+.preloader-background {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fafafa;
+	
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+}
+
+.card-red{
+    background-color: #C1666B;
+}
+.card-red.darken-1{
+    background-color: #b54a4f;
+}
+.card-red-text{
+    color:  #C1666B!important;
+}
+.card-red.lighten-5{
+    background-color: #fce9f0;
+}
+.card-blue{
+    background-color: #313A5E;
+}
+.card-blue.darken-1{
+    background-color: #4f5d96;
+}
+.card-blue-text{
+    color:  #6977b0!important;
+}
+.card-blue.lighten-5{
+    background-color: #eef0f6;
+}
+.teal-text{
+    color: #479A8F!important;
+}
+ .parallax-container {
+      height: 50vh;
+}
+ .form-block{
+     padding: 32px 48px 0px 48px;
+     margin: 0px 12px 0px 12px;
+     border: 1px solid #ddd;
+ }
+ .opacity0{
+     min-height:30vh;
+ }
+ 

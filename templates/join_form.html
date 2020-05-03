@@ -1,0 +1,39 @@
+<div class="col s12 m5 offset-m1 l4 offset-l1 marginplusplus" id="join">
+  <div class="z-depth-4 white row form-block">
+    <div class="row">
+      <p class="center teal-text"><i class="material-icons">group</i></p>
+      <h5 class="center">Join a room</h5>
+    </div>
+    <form class="col s12" method="post">
+      <div class='row'>
+	<div class='input-field col s12'>
+	  <input class='validate' type='text' name='roomname' id='joinname' minlength="3" required/>
+	  <label for='joinname'>Enter a room name</label>
+	</div>
+      </div>
+      <div class="row">
+	<p class="light"> Select a team </p>
+	<p>
+	  <input class="with-gap" name="team" value="red" type="radio" id="red_join"  checked="checked"/>
+	  <label for="red_join">Red</label>
+	  &nbsp
+	  <input class="with-gap" name="team" value="blue" type="radio" id="blue_join"  />
+	  <label for="blue_join">Blue</label>
+	</p>
+	<p>
+	  <input type="checkbox"  name="spy" class="filled-in" id="spy-master_join" checked="checked" />
+	  <label for="spy-master_join">Spy master</label>
+	</p>
+      </div>
+      <br />
+      <center>
+	<div class='row'>
+	  <button type='submit' name='btn' value='join' class='col s12 btn btn-large waves-effect card-blue'>Join</button>
+	</div>
+	<div class="row">
+	  <a class="pink-text"> {{err_join}} </a>
+	</div>
+      </center>
+    </form>
+  </div>
+</div>

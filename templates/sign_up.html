@@ -1,0 +1,55 @@
+{% extends "backbone.html" %}
+{% block titre %} Codenames Online : Signup {% endblock %}
+{% block corps %}
+<div class="section"></div>
+<main>
+  <center>
+    <h3 class="header light"> Welcome, register </h3>
+    <div class="section"></div>
+    <div class="section"></div>
+    
+    <div class="container">
+      <div class="form-container z-depth-3 grey lighten-3 row">
+	<form class="col s12" method="post">
+	  <div class="row">
+            <div class="input-field col s12">
+              <input name="username" id="username" type="text" class="validate" required>
+              <label for="username">Username</label>
+            </div>
+	  </div>
+	  
+	  <div class="row">
+            <div class="input-field col s12">
+              <input name="email" id="email" type="email" class="validate" required>
+              <label for="email">Email</label>
+            </div>
+	  </div>
+	  
+	  <div class="row">
+            <div class="input-field col s12">
+              <input name="password" id="password" type="password" class="validate" minlength="6" required>
+              <label class="active" for="password">Password</label>
+            </div>
+	    <input type="hidden" value="{{ next or '' }}" name="next">
+	  </div>
+	  
+	  <br />
+	  <center>
+            <div class="row">
+              <button class="col s12 btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register
+		<i class="material-icons right">done</i>
+              </button>
+            </div>
+	    <div class="row">
+	      <a class="pink-text"> {{err}} </a>
+	    </div>
+	  </center>
+	</form>
+      </div>
+    </div>
+  </center>
+
+  <div class="section"></div>
+  <div class="section"></div>
+</main>
+{% endblock %}

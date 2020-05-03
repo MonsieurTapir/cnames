@@ -1,0 +1,70 @@
+{% extends 'backbone.html' %}
+{% block titre %}Game room : {{name}}{% endblock %}
+{% block corps %}
+{% include "preloader.html" %}
+{% include "game_side_nav.html" %}
+<div class="container-responsif valign-wrapper">
+  <div class="container">
+    <div class="section">
+      <div class="row" id="spy_form">
+	<form class="col s12 m8 ">
+	  <div class="row">
+            <div class="input-field col s12 m8">
+	      <input id="hint-word" type="text" class="validate">
+	      <label for="hint-word">Hint word</label>
+            </div>
+	  </div>
+	  <div class="row">
+	     <p class="range-field col s7 m4">
+	      <input type="range" id="guesses" min="1" max="8" />
+	     </p>
+	     <p class="col s3 offset-s1 btn waves-effect waves-light" id="submit-hint">  Submit 
+	       </p>
+	    </div>
+	</form>
+      </div>
+      <div class="row">
+	{% for i in keys %}
+	<div class="col s6 m4 l5ths">
+	  <div class="card-panel grey lighten-2 hoverable gamecard valign-wrapper center-block" id="{{words[i]|get_value}}" >
+	    <p class="uppercase center-align truncate">{{words[i]|get_value}}</p>
+	  </div>	  
+	</div>
+	{% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal_validation" class="modal">
+  <div class="modal-content" id="word-validation">
+    <p>You are guessing the word</p>
+  </div>
+  <div class="modal-footer">
+    <a  class="validate-word modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    <a class="cancel-word modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+<script src="static/js/game_sockets.js"></script>
+<script>
+  $('nav').hide();
+    history.pushState("", document.title, window.location.pathname
+                                                       + window.location.search);
+  var my_turn=false;
+  var my_team="{{player_team}}";
+  var spy="{{spy_master}}";
+  var spy_turn=("{{to_play}}".indexOf("spy")!==-1);
+
+  {% if player_team==to_play or player_team+"_spy"==to_play %}
+  my_turn=true;
+  {% endif %}
+  console.log(my_turn);
+  {% for i in words.values() %}
+  {% if i["guessed"] or spy_master %}reveal("{{i|get_value}}","{{i|get_team}}");{% endif %}
+  {% if i["guessed"] and spy_master %}$("#{{i|get_value}}").addClass("guessed");
+  console.log("hilighting {{i|get_value}} for spymaster");{% endif %}
+  {% endfor %}
+</script>
+{% endblock %}

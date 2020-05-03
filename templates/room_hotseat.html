@@ -1,0 +1,71 @@
+
+{% extends 'backbone.html' %}
+{% block titre %}Game room : {{name}}{% endblock %}
+
+{% block corps %}
+{% include "preloader.html" %}
+
+<div class="container gameboard valign-wrapper">
+  <div class="section">
+    <div class="row">
+      <h4 class="header center"><span class="card-blue-text" id="blue_score">{{blue_score}}</span> - <span class="card-red-text" id="red_score">{{red_score}}</span> 
+    </div>
+    <div class="row">
+      {% for i in keys %}
+      <div class="col s6 m4 l5ths">
+	<div class="card-panel grey lighten-2 hoverable gamecard valign-wrapper center-block" id="{{words[i]|get_value}}" >
+	  <p class="uppercase center-align truncate">{{words[i]|get_value}}</p>
+	</div>	  
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      </div>
+    <div class="row center">
+      <div class="col s12">
+      <a href="leave/{{name}}" id="leave-button" class=" waves-effect waves-light btn  card-blue"><i class="material-icons white-text right" style="margin-right:0px">exit_to_app</i>Leave game</a>
+
+      {% if owner %}
+      <a  class="waves-effect waves-light btn modal-trigger card-blue" href="#confirm_delete"><i class="material-icons white-text right" style="margin-right:0px" >delete_forever</i>Delete game</a>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="confirm_delete" class="modal">
+  <div class="modal-content">
+    <h4>Please Confirm</h4>
+    <p>This will delete the room</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
+    <a href="delete/{{name}}" class="waves-effect waves-green btn-flat" id="md1_Yes">Yes</a>
+  </div>
+</div>
+<div id="modal_validation" class="modal">
+  <div class="modal-content" id="word-validation">
+    <p>You are guessing the word</p>
+  </div>
+  <div class="modal-footer">
+    <a class="validate-word modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    <a class="cancel-word modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+<script src="static/js/game_sockets_hot.js"></script>
+<script>
+  $('nav').hide();
+  history.pushState("", document.title, window.location.pathname
+                                                       + window.location.search);
+  var spy=("{{spy_master}}"=="True")?true:false;
+  {% for i in words.values() %}
+  {% if i["guessed"] or spy_master %}reveal("{{i|get_value}}","{{i|get_team}}");{% endif %}
+  {% if i["guessed"] and spy_master %}$("#{{i|get_value}}").addClass("guessed");
+  console.log("hilighting {{i|get_value}} for spymaster");{% endif %}
+  {% endfor %}
+</script>
+{% endblock %}

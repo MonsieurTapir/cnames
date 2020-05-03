@@ -1,0 +1,42 @@
+<div class="col s12 m6 l5 offset-l1 marginplusplus" id="creation">
+  <div class="z-depth-3 white row form-block" >
+    <div class="row">
+      <p class="center teal-text"><i class="material-icons">settings</i></p>
+      <h5 class="center">Create a room</h5>
+    </div>
+    <form class="col s12" method="post">
+      <div class='row'>
+	<div class='input-field col s12'>
+	  <input {% if prefill != '' %}value="{{prefill}}"{% endif %}class='validate' type='text' name='roomname' id='createname' minlength="3" required/>
+	  <label for='createname'>Enter a room name</label>
+	</div>
+      </div>
+      <div class="row">
+	<p class="light"> Select a team </p>
+	<p>
+	  <input class="with-gap" name="team" value="red" type="radio" id="red"  checked="checked"/>
+	  <label for="red">Red</label>
+	  &nbsp
+	  <input class="with-gap" name="team" value="blue" type="radio" id="blue"  />
+	  <label for="blue">Blue</label>
+	  &nbsp
+	  <input class="with-gap" name="team" value="hotseat" type="radio" id="hotseat"  />
+	  <label for="hotseat">Hotseat</label>
+	</p>
+	<p>
+	  <input type="checkbox"  name="spy" class="filled-in" id="spy-master" checked="checked" />
+	  <label for="spy-master">Spy master</label>
+	</p>
+      </div>
+      <br />
+      <center>
+	<div class='row'>
+	  <button type='submit' name='btn' value='create' class='col s12 btn btn-large waves-effect card-blue'>Create</button>
+	</div>
+	<div class="row">
+	  <a class="pink-text"> {{err_create}} </a>
+	</div>
+      </center>
+    </form>
+  </div>
+</div>
